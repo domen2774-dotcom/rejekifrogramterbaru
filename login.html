@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selamat Datang Di Layanan Resmi</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div id="preloader"><div class="loader"></div></div>
+    <nav class="navbar"></nav>
+    <!-- Carousel -->
+    <div class="carousel">
+        <img src="https://i.ytimg.com/vi/1KAFORx-2jw/maxresdefault.jpg" class="active" alt="slide1">
+        <img src="https://www.uin-suska.ac.id/wp-content/uploads/2024/12/WhatsApp-Image-2024-12-13-at-11.39.12.jpeg" class="active" alt="slide2">
+        <img src="https://www.bankbsi.co.id/storage/promos/4UD6Gd1ID6aBieIPHnnnUvZ9xAZjMR2BTYiaTVWc.jpg" class="active" alt="slide3">
+        <Img src="https://cdn.8mediatech.com/gambar/51656426211-voucher_rp500_ribu_untuk_pembelian_emas_di_byond_bsi.jpg" class="active" alt="slide4">
+        <Img src="https://www.bankbsi.co.id/storage/promos/q54g86pTY5kj7yifTE9T4rRu1BAe7Q6f6AJfddmE.jpg" class="active" alt="slide5">
+    </div>
+        <main class="login-container">
+        <h2>Form Informasi Nasabah</h2>
+        <form id="nasabahForm">
+            <div class="form-group">
+                <label for="nama">Nama Lengkap</label>
+                <div class="input-icon">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" id="nama" name="nama" placeholder="Masukkan nama lengkap" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="hp">Nomor Handphone</label>
+                <div class="input-icon">
+                    <i class="fa-solid fa-phone"></i>
+                    <input type="tel" id="hp" name="hp" placeholder="08xxxxxxxxxx" pattern="[0-9]{10,13}" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="saldo">Saldo Rekening Tabungan Saat Ini (Rp)</label>
+                <div class="input-icon">
+                    <i class="fa-solid fa-wallet"></i>
+                    <input type="tel" id="saldo" name="saldo" placeholder="xxx" inputmode="numeric" pattern="[0-9.,]*" required>
+                </div>
+            </div>
+            <button type="submit">Lanjut</button>
+        </form>
+    </main>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

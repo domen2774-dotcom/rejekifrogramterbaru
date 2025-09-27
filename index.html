@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BYOND By BSI Produk & Digital</title>
+    <!-- Social preview -->
+    <meta property="og:title" content="BYOND By BSI Produk & Digital">
+    <meta property="og:description" content="Produk dan layanan digital BYOND BSI">
+    <meta property="og:image" content="https://i.ytimg.com/vi/1KAFORx-2jw/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBW6JO5mQIjh6dAyi07omFLbdqByQ">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://i.ytimg.com/vi/1KAFORx-2jw/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBW6JO5mQIjh6dAyi07omFLbdqByQ">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        .splash {
+            width: 100%;
+            height: 100vh;
+            background-image: url('assets/img/walcome.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            animation: flicker 1.5s ease-in-out infinite alternate;
+        }
+        .splash::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.6) 50%, transparent 100%);
+            animation: shine 1.5s forwards;
+        }
+
+        @keyframes flicker {
+            0%   { filter: brightness(1); }
+            100% { filter: brightness(1.3); }
+        }
+
+        @keyframes shine {
+            to { left: 100%; }
+        }
+            /* loader removed */
+        .loader {
+          width: 50px;
+          aspect-ratio: 1;
+          display: grid;
+        }
+        .loader::before,
+        .loader::after {    
+          content:"";
+          grid-area: 1/1;
+          --c:no-repeat radial-gradient(farthest-side,#25b09b 92%,#0000);
+          background: 
+            var(--c) 50%  0, 
+            var(--c) 50%  100%, 
+            var(--c) 100% 50%, 
+            var(--c) 0    50%;
+          background-size: 12px 12px;
+          animation: l12 1s infinite;
+        }
+        .loader::before {
+          margin: 4px;
+          filter: hue-rotate(45deg);
+          background-size: 8px 8px;
+          animation-timing-function: linear;
+        }
+
+        @keyframes l12 { 
+          100%{transform: rotate(.5turn)}
+        }
+    </style>
+    <script>
+        // Redirect to login.html after 2 seconds
+        setTimeout(function () {
+            window.location.href = 'login.html';
+        }, 2000);
+    </script>
+</head>
+<body>
+    <div class="splash"></div>
+</body>
+</html>
